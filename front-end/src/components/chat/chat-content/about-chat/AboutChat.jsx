@@ -10,12 +10,14 @@ import Input from 'antd/lib/input/Input';
 import MenuItem from 'antd/lib/menu/MenuItem';
 import AvatarItemListCheckedUsers from '~/components/menu/content/AvatarItemListCheckedUsers';
 import { type } from '@testing-library/user-event/dist/type';
+import AvatarItemListMemberGroup from '~/components/menu/content/AvatarItemListMemberGroup';
 
 function AboutChat() {
     const [isOpen1, setIsOpen1] = useState(false);
     const [isOpen2, setIsOpen2] = useState(false);
     const [isOpenInfor, setIsOpenInFor] = useState(false);
     const [isOpenRename, setIsOpenRename] = useState(false);
+    const [isOpenManageGroup, setIsOpenManageGroup] = useState(false);
     const { Panel } = Collapse;
 
     const users = [{
@@ -86,6 +88,17 @@ function AboutChat() {
         setIsOpenRename(false)
     }
 
+    const handleShowModalManageGroup = () => {
+        setIsOpenManageGroup(true)
+    }
+
+    const handleOKModalManageGroup = () => {
+        setIsOpenManageGroup(false)
+    }
+
+    const handleCancelModalManageGroup = () => {
+        setIsOpenManageGroup(false)
+    }
 
     return (<StyledSection>
         <StyledHeader>
@@ -129,8 +142,10 @@ function AboutChat() {
                 </StyledFunctionIcon>
                 {/* Khi nào vào nhóm , thì mới bật cái này */}
                 <StyledFunctionIcon>
-                    <SettingOutlined />
-                    <StyledFunctionName>Quản lí nhóm</StyledFunctionName>
+                    <StyledFunctionTurnOff onClick={handleShowModalManageGroup}>
+                        <SettingOutlined />
+                        <StyledFunctionName>Quản lí nhóm</StyledFunctionName>
+                    </StyledFunctionTurnOff>
                 </StyledFunctionIcon>
 
             </StyledFunction>
@@ -287,6 +302,31 @@ function AboutChat() {
                     <StyledAvatar style={{ position: 'relative', left: '42%' }}></StyledAvatar>
                     <StyledText style={{ display: 'flex', justifyContent: 'center', margin: '6px 0', fontSize: '16px', fontWeight: 500 }}>Hãy đặt một cái tên dễ nhớ</StyledText>
                     <Input />
+                </Form.Item>
+            </StyledForm>
+        </StyledModal>
+        <StyledModal title="Danh sách thành viên nhóm" open={isOpenManageGroup} onCancel={handleCancelModalManageGroup} onOk={handleOKModalManageGroup}
+            footer={[
+                <Button key="back" style={{ fontWeight: 700 }} onClick={handleCancelModalManageGroup}>Hủy</Button>,
+                <Button key="submit" style={{ fontWeight: 700 }} onClick={handleOKModalManageGroup} type="primary">Đồng ý</Button>
+
+            ]}>
+            <StyledForm name="basic" labelCol={{ span: 8 }} wrapperCol={{ span: 24 }} initialValues={{ remember: false }}
+                // onFinish={onFinish} onFinishFailed={onFinishFailed} 
+                autoComplete="off">
+                <Form.Item>
+                    {
+                        users.map((user, index) => (
+                            <AvatarItemListMemberGroup
+                                key={index}
+                                index={user._id}
+                                name={user.name}
+                                avatar={user.avatar}
+                            >
+                            </AvatarItemListMemberGroup>
+                        ))
+                    }
+
                 </Form.Item>
             </StyledForm>
         </StyledModal>
