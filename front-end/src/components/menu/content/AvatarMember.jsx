@@ -18,7 +18,6 @@ function AvatarAddFriend({ name, content, avatar, curentUser, id }) {
             <Content>
                 <TitleContent>
                     <ContentName>{name}</ContentName>
-                    <ContentAbout style={{ justifyContent: 'flex-end' }}></ContentAbout>
                 </TitleContent>
                 <MoreContent>
                     <Button type='default'>Đuổi ra</Button>
@@ -44,16 +43,16 @@ const Wrapper = styled.div`
 `;
 
 const Content = styled.div`
-        width: 100%;
-        height: 100%;
-        display: flex;
-        align-items: center;
-        flex-direction: row;
-    `;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    flex-direction: row;
+    justify-content: space-between;
+`;
 const TitleContent = styled.div`
     width: 100%;
     display: flex;
-    justify-content: space-between;
     align-items: center;
 `;
 const MoreContent = styled.div`

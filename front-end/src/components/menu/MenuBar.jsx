@@ -342,12 +342,6 @@ function MenuBar() {
                     <MenuIcon>
                         <ContactsOutlined onClick={() => setOption('contact')} />
                     </MenuIcon>
-                    {/* <MenuIcon>
-                        <CheckSquareOutlined onClick={() => setOption('check')} />
-                    </MenuIcon> */}
-                    {/* <MenuIcon>
-                        <LogoutOutlined onClick={handleLogout} />
-                    </MenuIcon> */}
                 </TopMenuICon>
                 <BottomMenuICon>{renderItems2()}</BottomMenuICon>
             </StartWrapper>
@@ -441,15 +435,6 @@ function MenuBar() {
                     ))} */}
                 </StyledResultAddFriend>
             </StyledModal>
-
-            {/* <StyledModal title="Xác nhận" open={logOut} onCancel={handleShowModalCancelLogOut} onOk={handleShowModalOKLogOut}
-                footer={[
-                    <Button key="back" style={{ fontWeight: 700 }} onClick={handleShowModalCancelLogOut}>Hủy</Button>,
-                    <Button key="submit" style={{ fontWeight: 700 }} type="primary" onClick={handleShowModalOKLogOut}>Đồng ý</Button>
-                ]}>
-                
-                <StyledText>Bạn có muốn thoát ứng dụng không ?</StyledText>
-            </StyledModal> */}
 
             <StyledModal centered title="Tạo nhóm" open={isOpen} onCancel={handleCancelModalCreatGroup} onOk={handleOKModalCreatGroup}
                 footer={[
