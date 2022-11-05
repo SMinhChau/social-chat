@@ -26,21 +26,21 @@ function AboutChat() {
 
     const users = [{
         _id: '1',
-        adminID: '1',
+        adminID: '2',
         name: 'Minh Châu',
         content: 'Hi Tuan!!',
         avatar: 'https://s120-ava-talk.zadn.vn/4/8/3/5/51/120/3a1cf7ea2e80a0262202104db962090e.jpg',
     },
     {
         _id: '2',
-        adminID: '1',
+        adminID: '2',
         name: 'Duy Khang',
         content: 'Hi Chau!!',
         avatar: 'https://s120-ava-talk.zadn.vn/b/f/3/a/3/120/4ae7bbb88211e3fdd33873839ba6a1d8.jpg',
     },
     {
         _id: '3',
-        adminID: '1',
+        adminID: '2',
         name: 'Lê Tuấn',
         content: 'Hi Chau!!',
         avatar: 'https://s120-ava-talk.zadn.vn/c/f/3/5/20/120/e83b009221d944ac707d41f4da3e138e.jpg',
