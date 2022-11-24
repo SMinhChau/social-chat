@@ -26,6 +26,7 @@ import FriendChat from './frient-chat/FriendChat';
 import MyChat from './my-chat/MyChat';
 import ScrollToBottom, { useScrollToBottom, useSticky } from 'react-scroll-to-bottom';
 import { getToken } from '~/utils/function';
+import moment from 'moment/moment';
 
 const CheckboxGroup = Checkbox.Group;
 
@@ -273,7 +274,7 @@ function MainChat({ isShowAbout, setIsShowAbout, selectedUser, userID }) {
             });
         }
     }, [])
-    
+
     return (
         <Wrapper isShowAbout={isShowAbout}>
             <HeaderWrapper>
@@ -342,7 +343,7 @@ function MainChat({ isShowAbout, setIsShowAbout, selectedUser, userID }) {
                 onEnter={sendChat}
                 placeholder="Nhập nội dung..."
                 onResize
-                maxLength="500"        
+                maxLength="500"
             />
             < StyledModal title="Tạo nhóm" open={isOpen} onCancel={handleCancelModalCreatGroup} onOk={handleOKModalCreatGroup}
                 footer={
@@ -354,7 +355,7 @@ function MainChat({ isShowAbout, setIsShowAbout, selectedUser, userID }) {
                 <StyledForm name="basic" labelCol={{ span: 8 }} wrapperCol={{ span: 24 }} initialValues={{ remember: false }}
                     // onFinish={onFinish} onFinishFailed={onFinishFailed} 
                     autoComplete="off">
-                    <Form.Item valuePropName="fileList" style={{textAlign:'center'}}>
+                    <Form.Item valuePropName="fileList" style={{ textAlign: 'center' }}>
                         <Upload action="/upload.do" listType="picture-card">
                             <div>
                                 <PlusOutlined />
@@ -398,15 +399,15 @@ function MainChat({ isShowAbout, setIsShowAbout, selectedUser, userID }) {
                 <StyledForm name="basic" labelCol={{ span: 8 }} wrapperCol={{ span: 18 }} initialValues={{ remember: false }}
                     // onFinish={onFinish} onFinishFailed={onFinishFailed} 
                     autoComplete="off">
+                    <StyledAvatarNen></StyledAvatarNen>
+
                     <Form.Item>
-                        <StyledAvatarNen></StyledAvatarNen>
-                    </Form.Item>
-                    <Form.Item>
-                        <StyledAvatar style={{ display: 'initial', position: 'absolute', top: '-75px', left: '50%', border: '3px solid white', width: '80px', height: '80px' }}></StyledAvatar>
+                        <StyledAvatar alt="Avatar" src={userChat?.avatar || AvatarDefault} style={{ display: 'initial', position: 'absolute', top: '-75px', left: '50%', border: '3px solid white', width: '80px', height: '80px' }}></StyledAvatar>
                     </Form.Item>
                     <Form.Item wrapperCol={{ span: 24 }}>
-                        <StyledNameEdit>
-                            <StyledName>Your Name<EditOutlined className='icon-edit' onClick={handleShowModalRename} /> </StyledName>
+                        <StyledNameEdit eEdit>
+                            <StyledName>{userChat?.name || "Loading..."}</StyledName>
+                            <EditOutlined className='icon-edit' onClick={handleShowModalRename} />
                         </StyledNameEdit>
                     </Form.Item>
                     <Form.Item>
@@ -419,15 +420,15 @@ function MainChat({ isShowAbout, setIsShowAbout, selectedUser, userID }) {
                             <StyledText style={{ top: '-30px' }}><h3>Thông tin cá nhân</h3></StyledText>
                             <StyledDetailInfor>
                                 <StyledText>Số điện thoại</StyledText>
-                                <StyledText>0123456789</StyledText>
+                                <StyledText>{userChat?.phoneNumber || "Loading..."}</StyledText>
                             </StyledDetailInfor>
                             <StyledDetailInfor>
                                 <StyledText>Giới tính</StyledText>
-                                <StyledText>Nữ</StyledText>
+                                <StyledText>{userChat?.gender ? 'Nam' : 'Nữ'}</StyledText>
                             </StyledDetailInfor>
                             <StyledDetailInfor>
                                 <StyledText>Ngày sinh</StyledText>
-                                <StyledText>2001/09/08</StyledText>
+                                <StyledText>{moment(userChat?.dateOfBirth).format("DD/MM/YYYY")}</StyledText>
                             </StyledDetailInfor>
                         </StyledContainInfor>
                     </Form.Item>

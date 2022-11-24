@@ -11,6 +11,8 @@ import { FacebookSelector } from 'react-reactions/lib/components/facebook/Facebo
 
 function FriendChat({ avatar, message, status }) {
     const { user } = useSelector(state => state.user)
+    const { userChat } = useSelector(state => state.userChat)
+
     const [hover, setHover] = useState(false);
     const [hoverEmoji, setHoverEmoji] = useState(false);
     const MessageTypFile = (id) => {
@@ -36,7 +38,7 @@ function FriendChat({ avatar, message, status }) {
                 {/* Avatar */}
                 <Avatar
                     size={40}
-                    src={user?.avatar || AvatarDefault}
+                    src={userChat?.avatar || AvatarDefault}
                 />
             </ItemContent>
             {/* Mesage */}
@@ -49,13 +51,13 @@ function FriendChat({ avatar, message, status }) {
                         </MessageText>
                         <div className='react-icon' style={{ display: 'flex' }}>
                             {hover && <StyledDeleteOutlined />}
-                            {hover && <StyledHeartOutlined onMouseEnter={() => { setHoverEmoji(true) }} onMouseLeave={() => { setHoverEmoji(false) }} />}
+                            {/* {hover && <StyledHeartOutlined onMouseEnter={() => { setHoverEmoji(true) }} onMouseLeave={() => { setHoverEmoji(false) }} />} */}
                             {/* <StyledDeleteOutlined/>
                             <StyledHeartOutlined/> */}
                         </div>
-                        {
+                        {/* {
                         hoverEmoji && <FacebookSelector/>
-                        }
+                        } */}
                     </MessageItem>
                 </MessageContent>
             </MessageContainer>

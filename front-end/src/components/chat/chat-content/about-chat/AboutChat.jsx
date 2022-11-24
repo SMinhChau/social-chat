@@ -15,6 +15,7 @@ import { useSelector } from 'react-redux';
 import { AvatarDefault, URL } from '~/utils/constant';
 import { getToken } from '~/utils/function';
 import axios from 'axios';
+import moment from 'moment/moment';
 
 const CheckboxGroup = Checkbox.Group;
 
@@ -259,15 +260,14 @@ function AboutChat() {
             <StyledForm name="basic" labelCol={{ span: 8 }} wrapperCol={{ span: 18 }} initialValues={{ remember: false }}
                 // onFinish={onFinish} onFinishFailed={onFinishFailed} 
                 autoComplete="off">
+                <StyledAvatarNen></StyledAvatarNen>
+
                 <Form.Item>
-                    <StyledAvatarNen></StyledAvatarNen>
-                </Form.Item>
-                <Form.Item>
-                    <StyledAvatar style={{ display: 'initial', position: 'absolute', top: '-75px', left: '50%', border: '3px solid white', width: '80px', height: '80px' }}></StyledAvatar>
+                    <StyledAvatar alt="Avatar" src={userChat?.avatar || AvatarDefault} style={{ display: 'initial', position: 'absolute', top: '-75px', left: '50%', border: '3px solid white', width: '80px', height: '80px' }}></StyledAvatar>
                 </Form.Item>
                 <Form.Item wrapperCol={{ span: 24 }}>
-                    <StyledNameEdit>
-                        <StyledName>Your Name</StyledName>
+                    <StyledNameEdit eEdit>
+                        <StyledName>{userChat?.name || "Loading..."}</StyledName>
                         <EditOutlined className='icon-edit' onClick={handleShowModalRename} />
                     </StyledNameEdit>
                 </Form.Item>
@@ -281,15 +281,15 @@ function AboutChat() {
                         <StyledText style={{ top: '-30px' }}><h3>Thông tin cá nhân</h3></StyledText>
                         <StyledDetailInfor>
                             <StyledText>Số điện thoại</StyledText>
-                            <StyledText>0123456789</StyledText>
+                            <StyledText>{userChat?.phoneNumber || "Loading..."}</StyledText>
                         </StyledDetailInfor>
                         <StyledDetailInfor>
                             <StyledText>Giới tính</StyledText>
-                            <StyledText>Nữ</StyledText>
+                            <StyledText>{userChat?.gender ? 'Nam' : 'Nữ'}</StyledText>
                         </StyledDetailInfor>
                         <StyledDetailInfor>
                             <StyledText>Ngày sinh</StyledText>
-                            <StyledText>2001/09/08</StyledText>
+                            <StyledText>{moment(userChat?.dateOfBirth).format("DD/MM/YYYY")}</StyledText>
                         </StyledDetailInfor>
                     </StyledContainInfor>
                 </Form.Item>
